@@ -1,3 +1,6 @@
+<style>
+  @import '../assets/style/scss/style.scss';
+</style>
 <template>
   <div class="f-select">
     <div class="fs__select-placeholder">
@@ -117,74 +120,3 @@
       }
   }
 </script>
-<style>
-  .fs__select-placeholder {
-    position: relative;
-  }
-  .fs__dropdown-input {
-    display: block;
-    text-align: left;
-    padding: 10px 13px;
-    background: none;
-    border: 1px solid rgba(60,60,60,.26);
-    border-radius: 4px;
-    white-space: normal;
-    width: 100%;
-    outline: none;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  .fs__dropdown-menu {
-    display: block;
-    box-sizing: border-box;
-    position: absolute;
-    top: 36px;
-    left: 0;
-    z-index: 1000;
-    padding: 5px 0;
-    margin: 0;
-    width: 100%;
-    max-height: 350px;
-    min-width: 160px;
-    overflow-y: auto;
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,.15);
-    border: 1px solid rgba(60,60,60,.26);
-    border-top-style: none;
-    border-radius: 0 0 4px 4px;
-    text-align: left;
-    list-style: none;
-    background: #fff;
-  }
-  .fs__dropdown-menu-option {
-    position: relative;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    color: #212121;
-    line-height: 1.5;
-  }
-  .fs__dropdown-menu-option:hover {
-    background-color: #f5f5f5;
-    cursor: pointer;
-  }
-  .fs__open-indicator {
-    position: relative;
-  }
-  .fs__indicator-pointer {
-    position: absolute;
-    top: 35%;
-    right: 1%;
-    fill: rgba(60,60,60,.4);
-    transform: scale(1);
-    transition: transform .15s cubic-bezier(1,-.115,.975,.855);
-    transition-timing-function: cubic-bezier(1,-.115,.975,.855);
-  }
-  .fs__reverse-arrow {
-    transform: scale(-1);
-  }
-  .fs__disabled-input {
-    cursor: default;
-  }
-  .fs__active-item {
-    background-color: #f5f5f5;
-  }
-</style>
