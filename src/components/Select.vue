@@ -1,34 +1,30 @@
 <template>
   <div class="f-select">
-
-    <slot name="header" />
-    <div ref="toggle" class="fs__dropdown-wrapper">
-        <div class="fs__selected-options" ref="selectedOptions"></div>
-      </div>
-
     <div class="fs__select-placeholder">
-
       <div class="fs__open-indicator" @keyup="onSearchKeyDown">
+      <button class="fs__dropdown-input" ref="selectorInput" tabindex="0" @focus="onFocus" @blur="onBlur"
+            :style="{'fs__disabled-input': disabled}">
 
-      <open-arrow :class="{'fs__reverse-arrow': isOpen}" class="fs__indicator-pointer"/>
+        <slot name="selectedValue" v-if="value" >
+          <span v-if="value">{{value}}</span>
+        </slot>
 
-      <input type="text" class="fs__dropdown-input" :placeholder="placeholder"
-             @focus="onFocus" tabindex="1" @blur="onBlur" @input="handleInput"
-             ref="selectorInput" v-model="content" :disabled="disabled"
-             :style="{'fs__disabled-input': disabled}" >
+        <slot name="emptyPlaceholder" v-if="!value">
+          <span>{{placeholder}}</span>
+        </slot>
+
+        <open-arrow :class="{'fs__reverse-arrow': isOpen}" class="fs__indicator-pointer"/>
+      </button>
 
       <ul ref="dropdownMenu" class="fs__dropdown-menu" v-if="isOpen">
         <li v-for="(option, index) in options" :key="index"
             @mousedown.prevent.stop="selectValue(option)"
             @mouseover.prevent.stop="currentItem = index"
             class="fs__dropdown-menu-option"
-            :class='{"fs__active-item": index === currentItem}'
-        >
-
+            :class='{"fs__active-item": index === currentItem}'>
           <slot name="option" v-bind="normalizeOption(option)">
             {{ getOptionLabel(option) }}
           </slot>
-
         </li>
       </ul>
 
@@ -89,9 +85,9 @@
           onBlur () {
               this.isOpen = false
           },
-          handleInput(){
-              this.$emit('input', this.content)
-          },
+          // handleInput(){
+          //     this.$emit('input', this.content)
+          // },
           selectValue(option){
               if (option !== null) {
                   if (typeof option === 'string') {
@@ -126,13 +122,14 @@
     position: relative;
   }
   .fs__dropdown-input {
-    display: flex;
+    display: block;
+    text-align: left;
     padding: 10px 13px;
     background: none;
     border: 1px solid rgba(60,60,60,.26);
     border-radius: 4px;
     white-space: normal;
-    width: calc(100% - 26px);
+    width: 100%;
     outline: none;
     font-size: 14px;
     cursor: pointer;
@@ -141,12 +138,12 @@
     display: block;
     box-sizing: border-box;
     position: absolute;
-    top: calc(100% - 2px);
+    top: 36px;
     left: 0;
     z-index: 1000;
     padding: 5px 0;
     margin: 0;
-    width: calc(100% + 2px);
+    width: 100%;
     max-height: 350px;
     min-width: 160px;
     overflow-y: auto;

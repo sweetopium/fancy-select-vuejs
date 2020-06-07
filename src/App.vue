@@ -1,19 +1,38 @@
 <template>
   <div id="app">
 
-    {{value}}
-
-    <fancy-select v-model="value" :reduce="value => value.valueName.name"
+    <div style="border: 1px solid #959ba5; padding: 0 20px 20px 20px; margin-bottom: 20px">
+      <h3>Вложенный массив (+ стили для слотов)</h3>
+      <p>Выбранное значение: <strong>{{value}}</strong></p>
+      <fancy-select v-model="value" :reduce="value => value.valueName.name"
                   :options="nestedOptions" :disabled="disabled" placeholder="выбрать значение"
                   :getOptionLabel="value => value.valueName">
-
+      <template #selectedValue>
+        <span style="color: red">{{value}}</span>
+      </template>
+      <template #emptyPlaceholder>
+        <span style="color: rebeccapurple">выбрать опцию...</span>
+      </template>
       <template #option="{ valueName }">
         <h3 style="margin: 5px 0">{{valueName.name}}
           <span style="font-size: 12px; color: #696969">({{ valueName.jobTitle }})</span>
         </h3>
       </template>
-
     </fancy-select>
+    </div>
+
+    <div style="border: 1px solid #959ba5; padding: 0 20px 20px 20px; margin-bottom: 20px">
+      <h3>Массив без форматирования лейбла</h3>
+      <p>Выбранное значение: <strong>{{noLabelValue}}</strong></p>
+      <fancy-select v-model="noLabelValue" :reduce="value => value.valueName" :options="anotherOptions"></fancy-select>
+    </div>
+
+
+    <div style="border: 1px solid #959ba5; padding: 0 20px 20px 20px; margin-bottom: 20px">
+      <h3>Массив</h3>
+      <p>Выбранное значение: <strong>{{arrayValue}}</strong></p>
+      <fancy-select v-model="arrayValue" :options="arrayOptions"></fancy-select>
+    </div>
 
 
   </div>
@@ -30,7 +49,9 @@ export default {
   data () {
       return {
           value: null,
-          disabled: false,
+          noLabelValue: null,
+          arrayValue: null,
+          disabled: true,
           arrayOptions: ['one', 'two', 'three', 'lalala'],
           options: [
               {label: 'option 1', value: 'some value'},
