@@ -1,29 +1,23 @@
-# fancy-select
 
-## Project setup
-```
-npm install
-```
+# FancySelect – VueJS custom select component 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Универсальный select-компонент для VueJS. Основные возможности:
 
-### Compiles and minifies for production
-```
-npm run build
-```
+  - поддержка разных типов данных в options (разные уровни вложенности)
+  - поиск и фильтрация
+  - корректная работа с v-model
+  - навигация по списку с помощью стрелок
+  - кастомный плейсхолдер
+  - слоты для настройки стилей
 
-### Run your tests
-```
-npm run test
-```
+и многое другое 🤓
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Custom select component for VueJS. Major features:
+
+  - any options type (array, object, any nested levels)
+  - filter / search options
+  - v-model
+  - arrows navigation
+  - custom placeholder
+  - custom slots
