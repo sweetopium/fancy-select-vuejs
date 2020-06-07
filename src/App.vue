@@ -2,9 +2,18 @@
   <div id="app">
 
     {{value}}
-    <fancy-select v-model="value" :reduce="value => value.valueName.val"
+
+    <fancy-select v-model="value" :reduce="value => value.valueName.name"
                   :options="nestedOptions" :disabled="disabled" placeholder="выбрать значение"
-                  :getOptionLabel="value => value.valueName"/>
+                  :getOptionLabel="value => value.valueName">
+
+      <template #option="{ valueName }">
+        <h3 style="margin: 5px 0">{{valueName.name}}
+          <span style="font-size: 12px; color: #696969">({{ valueName.jobTitle }})</span>
+        </h3>
+      </template>
+
+    </fancy-select>
 
 
   </div>
@@ -36,11 +45,11 @@ export default {
               {label: 'option 4', valueName: 'here im'},
           ],
           nestedOptions: [
-              {label: 'option 1', valueName: {'id': 1, val: 'lalal1'}},
-              {label: 'option 2', valueName: {'id': 2, val: 'lalal2'}},
-              {label: 'option 3', valueName: {'id': 3, val: 'lalal3'}},
-              {label: 'option 4', valueName: {'id': 4, val: 'lalal4'}},
-          ],
+              {label: 'option 1', valueName: {name: "Ivan", jobTitle: 'CMO'}},
+              {label: 'option 2', valueName: {name: "John", jobTitle: 'CEO'}},
+              {label: 'option 3', valueName: {name: "Peter",jobTitle: 'CTO'}},
+              {label: 'option 4', valueName: {name: "Alex", jobTitle: 'CEO'}},
+          ]
       }
   }
 }

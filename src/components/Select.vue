@@ -25,7 +25,7 @@
             :class='{"fs__active-item": index === currentItem}'
         >
 
-          <slot name="option">
+          <slot name="option" v-bind="normalizeOption(option)">
             {{ getOptionLabel(option) }}
           </slot>
 
@@ -114,6 +114,9 @@
               } else if (event.key === 'Escape') {
                   this.$refs.selectorInput.blur();
               }
+          },
+          normalizeOption(option){
+              return (typeof option === 'object') ? option : {[this.label]: option};
           }
       }
   }
