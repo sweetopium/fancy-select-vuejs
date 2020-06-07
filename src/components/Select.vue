@@ -5,7 +5,8 @@
   <div class="f-select">
     <div class="fs__select-placeholder">
       <div class="fs__open-indicator" @keyup="onSearchKeyDown">
-      <button class="fs__dropdown-input" ref="selectorInput" tabindex="0" @focus="onFocus" @blur="onBlur"
+      <button class="fs__dropdown-input" ref="selectorInput" tabindex="0"
+              @mousedown.prevent.stop="handleClick" @focus="onFocus" @blur="onBlur"
             :style="{'fs__disabled-input': disabled}">
 
         <slot name="selectedValue" v-if="value" >
@@ -88,9 +89,9 @@
           onBlur () {
               this.isOpen = false
           },
-          // handleInput(){
-          //     this.$emit('input', this.content)
-          // },
+          handleClick(){
+              this.isOpen = !this.isOpen
+          },
           selectValue(option){
               if (option !== null) {
                   if (typeof option === 'string') {
